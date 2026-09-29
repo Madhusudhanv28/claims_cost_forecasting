@@ -185,11 +185,33 @@ claim_member_id = member_lookup['member_id'].to_numpy()[mem_row_idx]
 claim_member_region_canon = member_lookup['region_canon'].to_numpy()[mem_row_idx]
 claim_member_birth = member_lookup['birth_date'].to_numpy()[mem_row_idx]
 
-# ---- service month, with year-over-year trend ----
+# ---- service month, with year-over-year trend --------------------------
+# FIX (post-profiling finding): claims were previously assigned a month
+# independently of the member's own enrollment window, so ~32% of claims
+# landed in months the member wasn't even enrolled. Service month must now
+# be drawn only from each claim's assigned member's [enroll_start, enroll_end]
+# range, weighted by the same year-over-year trend within that range.
 trend_weights = np.array([1.0 * (1.055 ** (mi / 12)) for mi in range(N_MONTHS)])
 trend_weights = trend_weights / trend_weights.sum()
-claim_month_idx = rng.choice(N_MONTHS, size=N_CLAIMS_BASE, p=trend_weights)
-day_offset = rng.integers(0, 28, size=N_CLAIMS_BASE)
+
+claim_enroll_start = enroll_start[mem_row_idx]
+claim_enroll_end = enroll_end[mem_row_idx]
+
+claim_month_idx = np.empty(N_CLAIMS_BASE, dtype=int)
+_combo_df = pd.DataFrame({
+    'start': claim_enroll_start,
+    'end': claim_enroll_end,
+    'orig_idx': np.arange(N_CLAIMS_BASE),
+})
+for (s, e), _grp in _combo_df.groupby(['start', 'end']):
+    idxs = _grp['orig_idx'].to_numpy()
+    months_range = np.arange(s, e + 1)
+    w = trend_weights[s:e + 1]
+    w = w / w.sum()
+    claim_month_idx[idxs] = rng.choice(months_range, size=len(idxs), p=w)
+
+day_in_month_by_idx = np.array([p.days_in_month for p in months])
+day_offset = rng.integers(0, day_in_month_by_idx[claim_month_idx])
 service_date = month_start_ts.to_numpy()[claim_month_idx] + day_offset * np.timedelta64(1, 'D')
 is_winter = np.isin((claim_month_idx % 12), [10, 11, 0, 1])  # Nov,Dec,Jan,Feb
 
