@@ -151,6 +151,15 @@ CREATE TABLE mart_claim_features (
     network_status                             VARCHAR(30),
     region                                        VARCHAR(20),
     paid_amount                                     DECIMAL(14,2),
+    -- the self-join below groups by member_sk, and every orphan claim
+    -- shares one placeholder member_sk (UNKNOWN), so a prior-claims
+    -- count for an orphan would actually be counting OTHER fake
+    -- patients' claims, not that claim's own history. This flag lets
+    -- Python exclude those rows rather than silently train on a wrong
+    -- number. Affects ~2.5% of rows; real members are unaffected,
+    -- since their member_sk values never collide with each other or
+    -- with UNKNOWN.
+    unmatched_member                                 TINYINT NOT NULL DEFAULT 0,
     CONSTRAINT fk_mcf_claim  FOREIGN KEY (claim_sk)  REFERENCES fact_claim(claim_sk),
     CONSTRAINT fk_mcf_member FOREIGN KEY (member_sk) REFERENCES dim_member(member_sk)
 );
@@ -181,19 +190,22 @@ GROUP BY a.claim_sk;
 INSERT INTO mart_claim_features (
     claim_sk, member_sk, service_date, prior_claims_12mo, days_since_last_claim,
     patient_age, chronic_flag_diabetes, chronic_flag_chf, chronic_flag_cancer,
-    chronic_flag_copd, chronic_flag_esrd, claim_type, network_status, region, paid_amount
+    chronic_flag_copd, chronic_flag_esrd, claim_type, network_status, region, paid_amount,
+    unmatched_member
 )
 SELECT
     f.claim_sk, f.member_sk, f.service_date,
-    pc.prior_claims_12mo,
-    lc.days_since_last_claim,
+    -- NULL out for orphans: see the column comment above for why
+    CASE WHEN f.unmatched_member = 1 THEN NULL ELSE pc.prior_claims_12mo END,
+    CASE WHEN f.unmatched_member = 1 THEN NULL ELSE lc.days_since_last_claim END,
     f.patient_age,
     dm.chronic_flag_diabetes, dm.chronic_flag_chf, dm.chronic_flag_cancer,
     dm.chronic_flag_copd, dm.chronic_flag_esrd,
     f.claim_type,
     dp.network_status,
     dm.region,
-    f.paid_amount
+    f.paid_amount,
+    f.unmatched_member
 FROM fact_claim f
 JOIN tmp_prior_claims pc ON pc.claim_sk = f.claim_sk
 JOIN tmp_last_claim    lc ON lc.claim_sk = f.claim_sk
