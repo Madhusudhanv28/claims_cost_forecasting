@@ -18,8 +18,24 @@ USE claims_forecasting;
 SET SESSION tmp_table_size = 536870912;
 SET SESSION max_heap_table_size = 536870912;
 
--- One-time index. Error 1061 on rerun is harmless -- it already exists.
-ALTER TABLE fact_claim ADD INDEX idx_member_service (member_sk, service_date);
+-- Create the supporting index only if it does not already exist.
+SET @idx_exists := (
+    SELECT COUNT(*)
+    FROM information_schema.statistics
+    WHERE table_schema = DATABASE()
+      AND table_name = 'fact_claim'
+      AND index_name = 'idx_member_service'
+);
+
+SET @sql := IF(
+    @idx_exists = 0,
+    'ALTER TABLE fact_claim ADD INDEX idx_member_service (member_sk, service_date)',
+    'SELECT 1'
+);
+
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 
 -- ============================================================
@@ -139,7 +155,9 @@ CREATE TABLE mart_claim_features (
     claim_sk            INT PRIMARY KEY,
     member_sk             INT NOT NULL,
     service_date            DATE NOT NULL,
-    prior_claims_12mo         INT NOT NULL,
+    -- NULL for unmatched/orphan members because their shared UNKNOWN
+    -- member_sk cannot provide a valid individual claim history.
+    prior_claims_12mo         INT NULL,
     days_since_last_claim      INT NULL,
     patient_age                  DECIMAL(6,1) NULL,
     chronic_flag_diabetes          TINYINT NULL,
@@ -280,8 +298,15 @@ GROUP BY DATE_FORMAT(service_date, '%Y-%m'),
 -- ============================================================
 -- SECTION 6: sanity checks
 -- ============================================================
-SELECT COUNT(*) AS rows_in_mart_claim_features, (SELECT COUNT(*) FROM fact_claim) AS rows_in_fact_claim;
--- Expect equal.
+-- Feature-mart reconciliation: the mart must contain exactly one row
+-- per fact_claim row and claim_sk must remain unique.
+SELECT
+    (SELECT COUNT(*) FROM mart_claim_features) AS rows_in_mart_claim_features,
+    (SELECT COUNT(DISTINCT claim_sk) FROM mart_claim_features) AS distinct_claim_sk_in_mart,
+    (SELECT COUNT(*) FROM fact_claim) AS rows_in_fact_claim,
+    (SELECT COUNT(*) FROM mart_claim_features) = (SELECT COUNT(*) FROM fact_claim) AS row_count_matches,
+    (SELECT COUNT(DISTINCT claim_sk) FROM mart_claim_features) = (SELECT COUNT(*) FROM fact_claim) AS claim_key_count_matches;
+-- Expected: 985000 / 985000 / 985000 / 1 / 1 for this dataset.
 
 SELECT * FROM mart_pmpm ORDER BY month_year, claim_type LIMIT 15;
 
@@ -289,3 +314,12 @@ SELECT service_month, SUM(claim_count) AS claims, SUM(incremental_paid) AS paid
 FROM mart_lag_triangle GROUP BY service_month ORDER BY service_month LIMIT 12;
 
 SELECT * FROM mart_claim_features LIMIT 10;
+
+-- Final orphan-feature reconciliation:
+-- unmatched claims must not retain self-join-derived history.
+SELECT
+    SUM(unmatched_member) AS flagged_rows,
+    SUM(unmatched_member = 1 AND prior_claims_12mo IS NOT NULL) AS orphan_rows_with_prior_claims,
+    SUM(unmatched_member = 1 AND days_since_last_claim IS NOT NULL) AS orphan_rows_with_last_claim_gap
+FROM mart_claim_features;
+

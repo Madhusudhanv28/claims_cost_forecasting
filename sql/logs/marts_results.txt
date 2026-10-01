@@ -1,11 +1,24 @@
-mysql> SOURCE C:\Users\madhu\Documents\Projects\claims_cost_forecasting\sql\04_marts.sql
+mysql> SOURCE C:\Users\madhu\Documents\Projects\claims_cost_forecasting\sql\04_marts_final.sql
 Database changed
 Query OK, 0 rows affected (0.00 sec)
 
 Query OK, 0 rows affected (0.00 sec)
 
-Query OK, 0 rows affected (2.98 sec)
-Records: 0  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
++---+
+| 1 |
++---+
+| 1 |
++---+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
@@ -14,25 +27,25 @@ Records: 36  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-Query OK, 1202281 rows affected (9.30 sec)
+Query OK, 1202281 rows affected (9.43 sec)
 Records: 1202281  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-Query OK, 49975 rows affected (2.23 sec)
+Query OK, 49975 rows affected (2.11 sec)
 Records: 49975  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-Query OK, 1242314 rows affected (11.93 sec)
+Query OK, 1242314 rows affected (11.72 sec)
 Records: 1242314  Duplicates: 0  Warnings: 0
 
-Query OK, 1242314 rows affected (16.88 sec)
+Query OK, 1242314 rows affected (14.88 sec)
 Records: 1242314  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-Query OK, 1242314 rows affected (17.50 sec)
+Query OK, 1242314 rows affected (16.41 sec)
 Records: 1242314  Duplicates: 0  Warnings: 0
 
 +----------------------------+-----------------------+------------------+
@@ -40,18 +53,18 @@ Records: 1242314  Duplicates: 0  Warnings: 0
 +----------------------------+-----------------------+------------------+
 |                      37283 |                  2750 |            40033 |
 +----------------------------+-----------------------+------------------+
-1 row in set (1.44 sec)
+1 row in set (1.63 sec)
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-Query OK, 1239564 rows affected (7.17 sec)
+Query OK, 1239564 rows affected (6.63 sec)
 Records: 1239564  Duplicates: 0  Warnings: 0
 
-Query OK, 0 rows affected, 1 warning (0.00 sec)
+Query OK, 0 rows affected (0.03 sec)
 
-Query OK, 0 rows affected, 1 warning (0.03 sec)
+Query OK, 0 rows affected, 1 warning (0.02 sec)
 
-Query OK, 1239564 rows affected (18.72 sec)
+Query OK, 1239564 rows affected (18.58 sec)
 Records: 1239564  Duplicates: 0  Warnings: 0
 
 +---------------------------------+--------------------------+-----------------------------+
@@ -59,56 +72,56 @@ Records: 1239564  Duplicates: 0  Warnings: 0
 +---------------------------------+--------------------------+-----------------------------+
 |                         1202281 |                    37283 |                     1239564 |
 +---------------------------------+--------------------------+-----------------------------+
-1 row in set (0.42 sec)
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-
-Query OK, 0 rows affected, 5 warnings (0.07 sec)
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-
-Query OK, 985000 rows affected (9.80 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-
-Query OK, 985000 rows affected (14 min 13.15 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-Query OK, 985000 rows affected (4 min 57.78 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
+1 row in set (0.34 sec)
 
 Query OK, 0 rows affected (0.03 sec)
 
-Query OK, 36 rows affected (1.91 sec)
-Records: 36  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected (0.02 sec)
 
 Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 985000 rows affected (9.18 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 985000 rows affected (14 min 53.14 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 985000 rows affected (5 min 8.91 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 36 rows affected (2.13 sec)
+Records: 36  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected (0.02 sec)
 
-Query OK, 180 rows affected (3.52 sec)
-Records: 180  Duplicates: 0  Warnings: 0
+Query OK, 0 rows affected (0.02 sec)
 
-Query OK, 0 rows affected, 1 warning (0.00 sec)
+Query OK, 180 rows affected (3.74 sec)
+Records: 180  Duplicates: 0  Warnings: 0
 
 Query OK, 0 rows affected (0.01 sec)
 
-Query OK, 0 rows affected, 1 warning (0.00 sec)
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
 
 Query OK, 0 rows affected (0.02 sec)
 
-Query OK, 144 rows affected (3.03 sec)
+Query OK, 144 rows affected (4.37 sec)
 Records: 144  Duplicates: 0  Warnings: 0
 
-+-----------------------------+--------------------+
-| rows_in_mart_claim_features | rows_in_fact_claim |
-+-----------------------------+--------------------+
-|                           1 |             985000 |
-+-----------------------------+--------------------+
-1 row in set (0.35 sec)
++-----------------------------+---------------------------+--------------------+-------------------+-------------------------+
+| rows_in_mart_claim_features | distinct_claim_sk_in_mart | rows_in_fact_claim | row_count_matches | claim_key_count_matches |
++-----------------------------+---------------------------+--------------------+-------------------+-------------------------+
+|                      985000 |                    985000 |             985000 |                 1 |                       1 |
++-----------------------------+---------------------------+--------------------+-------------------+-------------------------+
+1 row in set (3.29 sec)
 
 +------------+------------+-------------+-------------+---------------+---------+
 | month_year | claim_type | claim_count | total_paid  | member_months | pmpm    |
@@ -149,73 +162,27 @@ Records: 144  Duplicates: 0  Warnings: 0
 +---------------+--------+-------------+
 12 rows in set (0.00 sec)
 
-+----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+
-| claim_sk | member_sk | service_date | prior_claims_12mo | days_since_last_claim | patient_age | chronic_flag_diabetes | chronic_flag_chf | chronic_flag_cancer | chronic_flag_copd | chronic_flag_esrd | claim_type | network_status | region    | paid_amount |
-+----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+
-|        1 |     43582 | 2023-07-24   |                23 |                    10 |        51.1 |                     0 |                0 |                   0 |                 0 |                 0 | Pharmacy   | In-Network     | Northeast |       88.44 |
-|        2 |     16212 | 2024-11-22   |                 7 |                     9 |        34.4 |                     1 |                0 |                   0 |                 0 |                 0 | Pharmacy   | Out-of-Network | South     |      263.50 |
-|        3 |     33222 | 2023-08-10   |                 5 |                    18 |        70.6 |                     0 |                1 |                   0 |                 1 |                 0 | Pharmacy   | In-Network     | South     |       86.19 |
-|        4 |     42151 | 2023-01-26   |                44 |                    20 |        35.4 |                     0 |                0 |                   1 |                 0 |                 0 | Pharmacy   | In-Network     | South     |       77.84 |
-|        5 |       238 | 2024-05-28   |                42 |                     2 |        47.6 |                     0 |                0 |                   0 |                 0 |                 0 | Outpatient | In-Network     | South     |      356.84 |
-|        6 |       197 | 2022-08-05   |                 4 |                    30 |        10.0 |                     0 |                1 |                   0 |                 0 |                 0 | Preventive | In-Network     | West      |     1103.44 |
-|        7 |      5196 | 2022-02-04   |                 3 |                    20 |        63.1 |                     0 |                0 |                   0 |                 0 |                 0 | Pharmacy   | In-Network     | South     |      113.93 |
-|        8 |     39053 | 2024-04-15   |                 4 |                   187 |        49.6 |                     0 |                0 |                   1 |                 0 |                 0 | Pharmacy   | In-Network     | Midwest   |       91.24 |
-|        9 |      2486 | 2024-07-24   |                19 |                     2 |        73.8 |                     1 |                0 |                   0 |                 0 |                 0 | Preventive | In-Network     | West      |      254.96 |
-|       10 |     32339 | 2022-05-03   |                 6 |                     2 |        66.2 |                     0 |                0 |                   0 |                 0 |                 1 | Preventive | In-Network     | Northeast |      105.48 |
-+----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+
++----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+------------------+
+| claim_sk | member_sk | service_date | prior_claims_12mo | days_since_last_claim | patient_age | chronic_flag_diabetes | chronic_flag_chf | chronic_flag_cancer | chronic_flag_copd | chronic_flag_esrd | claim_type | network_status | region    | paid_amount | unmatched_member |
++----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+------------------+
+|        1 |     43582 | 2023-07-24   |                23 |                    10 |        51.1 |                     0 |                0 |                   0 |                 0 |                 0 | Pharmacy   | In-Network     | Northeast |       88.44 |                0 |
+|        2 |     16212 | 2024-11-22   |                 7 |                     9 |        34.4 |                     1 |                0 |                   0 |                 0 |                 0 | Pharmacy   | Out-of-Network | South     |      263.50 |                0 |
+|        3 |     33222 | 2023-08-10   |                 5 |                    18 |        70.6 |                     0 |                1 |                   0 |                 1 |                 0 | Pharmacy   | In-Network     | South     |       86.19 |                0 |
+|        4 |     42151 | 2023-01-26   |                44 |                    20 |        35.4 |                     0 |                0 |                   1 |                 0 |                 0 | Pharmacy   | In-Network     | South     |       77.84 |                0 |
+|        5 |       238 | 2024-05-28   |                42 |                     2 |        47.6 |                     0 |                0 |                   0 |                 0 |                 0 | Outpatient | In-Network     | South     |      356.84 |                0 |
+|        6 |       197 | 2022-08-05   |                 4 |                    30 |        10.0 |                     0 |                1 |                   0 |                 0 |                 0 | Preventive | In-Network     | West      |     1103.44 |                0 |
+|        7 |      5196 | 2022-02-04   |                 3 |                    20 |        63.1 |                     0 |                0 |                   0 |                 0 |                 0 | Pharmacy   | In-Network     | South     |      113.93 |                0 |
+|        8 |     39053 | 2024-04-15   |                 4 |                   187 |        49.6 |                     0 |                0 |                   1 |                 0 |                 0 | Pharmacy   | In-Network     | Midwest   |       91.24 |                0 |
+|        9 |      2486 | 2024-07-24   |                19 |                     2 |        73.8 |                     1 |                0 |                   0 |                 0 |                 0 | Preventive | In-Network     | West      |      254.96 |                0 |
+|       10 |     32339 | 2022-05-03   |                 6 |                     2 |        66.2 |                     0 |                0 |                   0 |                 0 |                 1 | Preventive | In-Network     | Northeast |      105.48 |                0 |
++----------+-----------+--------------+-------------------+-----------------------+-------------+-----------------------+------------------+---------------------+-------------------+-------------------+------------+----------------+-----------+-------------+------------------+
 10 rows in set (0.00 sec)
 
-mysql> note
-mysql> SOURCE C:\Users\madhu\Downloads\04b_rebuild_mart_claim_features.sql
-Database changed
-Query OK, 0 rows affected (0.00 sec)
++--------------+-------------------------------+---------------------------------+
+| flagged_rows | orphan_rows_with_prior_claims | orphan_rows_with_last_claim_gap |
++--------------+-------------------------------+---------------------------------+
+|        24830 |                             0 |                               0 |
++--------------+-------------------------------+---------------------------------+
+1 row in set (1.39 sec)
 
-Query OK, 0 rows affected (0.00 sec)
-
-Query OK, 0 rows affected (0.03 sec)
-
-Query OK, 0 rows affected (0.03 sec)
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-
-Query OK, 985000 rows affected (10.72 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-+-------------------------+
-| tmp_last_claim_rowcount |
-+-------------------------+
-|                  985000 |
-+-------------------------+
-1 row in set (0.05 sec)
-
-Query OK, 0 rows affected, 1 warning (0.00 sec)
-
-Query OK, 985000 rows affected (15 min 51.08 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-+---------------------------+
-| tmp_prior_claims_rowcount |
-+---------------------------+
-|                    985000 |
-+---------------------------+
-1 row in set (0.04 sec)
-
-Query OK, 985000 rows affected (3 min 17.12 sec)
-Records: 985000  Duplicates: 0  Warnings: 0
-
-+------------------------------------+
-| final_mart_claim_features_rowcount |
-+------------------------------------+
-|                             985000 |
-+------------------------------------+
-1 row in set (0.27 sec)
-
-+---------------------------+
-| distinct_claim_sk_in_mart |
-+---------------------------+
-|                    985000 |
-+---------------------------+
-1 row in set (1.22 sec)
-
-mysql> NOTEE
-
+mysql> notee
