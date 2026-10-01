@@ -1,0 +1,150 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SOURCE C:\Users\madhu\Documents\Projects\claims_cost_forecasting\sql\03_core_optimized_v2.sql
+Database changed
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+ERROR 1061 (42000): Duplicate key name 'idx_original_claim_id'
+ERROR 1061 (42000): Duplicate key name 'idx_member_month'
+Query OK, 0 rows affected (15.57 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 1096 rows affected (0.03 sec)
+Records: 1096  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0.03 sec)
+
+Query OK, 3000 rows affected (10.49 sec)
+Records: 3000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 5 warnings (0.05 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 49975 rows affected (1 min 38.32 sec)
+Records: 49975  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 74864 rows affected (3.01 sec)
+Records: 74864  Duplicates: 0  Warnings: 0
+
+Query OK, 74864 rows affected (1.23 sec)
+Records: 74864  Duplicates: 0  Warnings: 0
+
+Query OK, 49477 rows affected (6.93 sec)
+Rows matched: 49477  Changed: 49477  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 999556 rows affected (1 min 14.96 sec)
+Records: 999556  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 985000 rows affected (16.12 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 985000 rows affected (22.39 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 985000 rows affected (33.29 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 985000 rows affected (24.62 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 985000 rows affected (43.49 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 14775 rows affected (5.74 sec)
+Records: 14775  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected, 7 warnings (0.08 sec)
+
+Query OK, 985000 rows affected (4 min 9.82 sec)
+Records: 985000  Duplicates: 0  Warnings: 0
+
++-----------------------------+-----------------+----------------------------+
+| distinct_original_claim_ids | fact_claim_rows | distinct_claim_ids_in_fact |
++-----------------------------+-----------------+----------------------------+
+|                      985000 |          985000 |                     985000 |
++-----------------------------+-----------------+----------------------------+
+1 row in set (18.84 sec)
+
++--------------------------------+----------------------------+
+| distinct_members_in_membership | real_members_in_dim_member |
++--------------------------------+----------------------------+
+|                          49975 |                      49975 |
++--------------------------------+----------------------------+
+1 row in set (1.37 sec)
+
++-------------------------------+---------------------------+
+| distinct_providers_in_staging | providers_in_dim_provider |
++-------------------------------+---------------------------+
+|                          3000 |                      3000 |
++-------------------------------+---------------------------+
+1 row in set (6.22 sec)
+
++-----------------------+----------------------+-------------------------+------------------------+------------------------------+------------------------+-----------------------+-----------------------------+
+| unmatched_member_rows | pct_unmatched_member | outside_enrollment_rows | pct_outside_enrollment | rows_with_adjustment_applied | rows_capped_at_allowed | rows_with_invalid_age | rows_missing_procedure_code |
++-----------------------+----------------------+-------------------------+------------------------+------------------------------+------------------------+-----------------------+-----------------------------+
+|                 24830 |                 2.52 |                   58263 |                   5.92 |                        14775 |                   8117 |                  2914 |                       43740 |
++-----------------------+----------------------+-------------------------+------------------------+------------------------------+------------------------+-----------------------+-----------------------------+
+1 row in set (3.90 sec)
+
++------------------------------+-----------------------+
+| staging_originals_total_paid | fact_claim_total_paid |
++------------------------------+-----------------------+
+|                   3013037705 |            2935155860 |
++------------------------------+-----------------------+
+1 row in set (6.97 sec)
+
++----------+-----------+-----------+-------------+--------------+-----------------------+------------+------------+------------------+------------------+----------------+------------------------+--------------+----------------+---------------+----------------+-------------+----------------------+--------------------+-------------------------------+--------------+--------------------+-------------+-------------+----------------+---------------------+------------------+--------------------+---------------+---------------------+--------------------------+---------------------+
+| claim_sk | claim_id  | member_sk | provider_sk | service_date | claim_submission_date | paid_date  | claim_type | diagnosis_code_1 | diagnosis_code_2 | procedure_code | procedure_code_missing | revenue_code | length_of_stay | billed_amount | allowed_amount | paid_amount | original_paid_amount | paid_amount_capped | patient_responsibility_amount | claim_status | denial_reason_code | patient_age | age_invalid | has_adjustment | adjustment_claim_id | unmatched_member | outside_enrollment | record_source | load_timestamp      | load_timestamp_malformed | _core_built_at      |
++----------+-----------+-----------+-------------+--------------+-----------------------+------------+------------+------------------+------------------+----------------+------------------------+--------------+----------------+---------------+----------------+-------------+----------------------+--------------------+-------------------------------+--------------+--------------------+-------------+-------------+----------------+---------------------+------------------+--------------------+---------------+---------------------+--------------------------+---------------------+
+|        1 | C00115800 |     43582 |         611 | 2023-07-24   | 2023-07-29            | 2023-08-29 | Pharmacy   | E30.3            | NULL             | 90448          |                      0 | NULL         |           NULL |        247.04 |         151.87 |       88.44 |               114.90 |                  0 |                         36.97 | Paid         | NULL               |        51.1 |           0 |              1 | A00014250           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-09 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        2 | C00124511 |     16212 |         804 | 2024-11-22   | 2024-11-25            | 2024-12-17 | Pharmacy   | S41.7            | NULL             | 64497          |                      0 | NULL         |           NULL |        615.92 |         265.42 |      263.50 |               209.24 |                  0 |                         56.18 | Paid         | NULL               |        34.4 |           0 |              1 | A00007872           |                0 |                  1 | CLAIMS_SYS_B  | 2025-01-15 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        3 | C00208310 |     33222 |         985 | 2023-08-10   | 2023-08-13            | 2023-09-07 | Pharmacy   | I64.4            | NULL             | 38786          |                      0 | NULL         |           NULL |        181.12 |          86.19 |       86.19 |                78.10 |                  1 |                          8.09 | Paid         | NULL               |        70.6 |           0 |              1 | A00008412           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-18 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        4 | C00156669 |     42151 |        1142 | 2023-01-26   | 2023-01-28            | 2023-02-27 | Pharmacy   | M54.5            | NULL             | 50823          |                      0 | NULL         |           NULL |        153.64 |         109.07 |       77.84 |                98.18 |                  0 |                         10.89 | Paid         | NULL               |        35.4 |           0 |              1 | A00006344           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-09 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        5 | C00035660 |       238 |        1089 | 2024-05-28   | 2024-06-10            | 2024-06-25 | Outpatient | A33.2            | NULL             | 69062          |                      0 | NULL         |           NULL |        687.66 |         356.84 |      356.84 |               337.08 |                  1 |                         19.76 | Paid         | NULL               |        47.6 |           0 |              1 | A00001223           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-24 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        6 | C00162202 |       197 |        1209 | 2022-08-05   | 2022-08-11            | 2022-09-18 | Preventive | W93.6            | H59.4            | 11319          |                      0 | NULL         |           NULL |       2552.96 |        1217.05 |     1103.44 |               857.34 |                  0 |                        359.71 | Paid         | NULL               |        10.0 |           0 |              1 | A00011787           |                0 |                  0 | CLAIMS_SYS_B  | NULL                |                        1 | 2026-09-30 16:31:25 |
+|        7 | C00100521 |      5196 |         162 | 2022-02-04   | 2022-02-07            | 2022-02-18 | Pharmacy   | O58.2            | Z25.7            | 48339          |                      0 | NULL         |           NULL |        252.34 |         121.31 |      113.93 |               103.11 |                  0 |                         18.20 | Paid         | NULL               |        63.1 |           0 |              1 | A00006764           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-13 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        8 | C00167734 |     39053 |        1298 | 2024-04-15   | 2024-04-18            | 2024-05-23 | Pharmacy   | S81.6            | NULL             | 33529          |                      0 | NULL         |           NULL |        272.30 |         148.23 |       91.24 |               107.53 |                  0 |                         40.70 | Paid         | NULL               |        49.6 |           0 |              1 | A00011312           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-11 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|        9 | C00087862 |      2486 |         164 | 2024-07-24   | 2024-08-01            | 2024-08-19 | Preventive | Y32.7            | NULL             | 57791          |                      0 | NULL         |           NULL |        598.52 |         330.17 |      254.96 |               299.97 |                  0 |                         30.20 | Paid         | NULL               |        73.8 |           0 |              1 | A00006863           |                0 |                  0 | CLAIMS_SYS_B  | 2025-01-12 00:00:00 |                        0 | 2026-09-30 16:31:25 |
+|       10 | C00052446 |     32339 |         291 | 2022-05-03   | 2022-05-09            | 2022-05-24 | Preventive | O87.0            | NULL             | 93809          |                      0 | NULL         |           NULL |        246.78 |         157.87 |      105.48 |               135.91 |                  0 |                         21.96 | Paid         | NULL               |        66.2 |           0 |              1 | A00007421           |                0 |                  0 | CLAIMS_SYS_A  | 2025-01-08 00:00:00 |                        0 | 2026-09-30 16:31:25 |
++----------+-----------+-----------+-------------+--------------+-----------------------+------------+------------+------------------+------------------+----------------+------------------------+--------------+----------------+---------------+----------------+-------------+----------------------+--------------------+-------------------------------+--------------+--------------------+-------------+-------------+----------------+---------------------+------------------+--------------------+---------------+---------------------+--------------------------+---------------------+
+10 rows in set (0.00 sec)
+
+mysql>
